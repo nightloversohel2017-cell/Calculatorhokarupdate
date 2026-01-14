@@ -1313,6 +1313,15 @@
             document.getElementById('clear-history-btn').addEventListener('click', openConfirm);
             document.getElementById('reset-quantities-btn').addEventListener('click', handleResetQuantities);
 
+            // [FIX] Listeners for Custom Confirmation Modal
+            const confirmModal = document.getElementById('custom-confirm-modal');
+            document.getElementById('confirm-delete-all-btn').addEventListener('click', window.confirmYes);
+            confirmModal.querySelectorAll('.modal-close-btn').forEach(btn => btn.addEventListener('click', window.confirmNo));
+            confirmModal.addEventListener('click', (e) => {
+                if (e.target === confirmModal) {
+                    window.confirmNo();
+                }
+            });
 
             const userName = localStorage.getItem('userName');
             if (!userName) {
